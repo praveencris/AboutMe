@@ -34,15 +34,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addNickname(view: View) {
-        if (mBinding.nicknameEdit.length() > 0) {
-            mBinding.nicknameText.text = mBinding.nicknameEdit.text
-            mBinding.nicknameText.visibility = View.VISIBLE
-            mBinding.nicknameEdit.visibility = View.GONE
-            view.visibility = View.GONE
-            hideKeyBoard(view)
-        } else {
-            Toast.makeText(this, "Enter your nickname!", Toast.LENGTH_SHORT).show()
+        mBinding.apply {
+            if (this.nicknameEdit.length() > 0) {//this is optional
+                nicknameText.text = nicknameEdit.text
+                invalidateAll()//Invalidates all binding expressions and requests a new rebind to refresh UI.
+                nicknameText.visibility = View.VISIBLE
+                nicknameEdit.visibility = View.GONE
+                view.visibility = View.GONE
+                hideKeyBoard(view)
+            } else {
+                Toast.makeText(this.root.context, "Enter your nickname!", Toast.LENGTH_SHORT).show()
+            }
         }
+
 
     }
 }
