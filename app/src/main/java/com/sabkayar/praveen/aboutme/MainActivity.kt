@@ -4,18 +4,26 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.sabkayar.praveen.aboutme.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var mBinding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        // setContentView(R.layout.activity_main)
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        findViewById<Button>(R.id.done_button).setOnClickListener() {
+        /* findViewById<Button>(R.id.done_button).setOnClickListener() {
+             addNickname(it)
+         }*/
+
+        mBinding.doneButton.setOnClickListener() {
             addNickname(it)
         }
     }
@@ -26,16 +34,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addNickname(view: View) {
-        val editText = findViewById<EditText>(R.id.nickname_edit)
-        val textViewNickname = findViewById<TextView>(R.id.nickname_text)
-        if(editText.length()>0){
-            textViewNickname.text = editText.text
-            textViewNickname.visibility = View.VISIBLE
-            editText.visibility = View.GONE
+        if (mBinding.nicknameEdit.length() > 0) {
+            mBinding.nicknameText.text = mBinding.nicknameEdit.text
+            mBinding.nicknameText.visibility = View.VISIBLE
+            mBinding.nicknameEdit.visibility = View.GONE
             view.visibility = View.GONE
             hideKeyBoard(view)
-        }else{
-            Toast.makeText(this,"Enter your nickname!",Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Enter your nickname!", Toast.LENGTH_SHORT).show()
         }
 
     }
