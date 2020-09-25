@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this.root.context, "Enter your nickname!", Toast.LENGTH_SHORT).show()
             }
         }
-
+        // Note apply() can be replaced with also() replaces this with 'it'
 
     }
 }
