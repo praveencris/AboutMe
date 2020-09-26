@@ -12,6 +12,7 @@ import com.sabkayar.praveen.aboutme.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding
 
+    // Instance of MyName data class.
     private var myName = MyName("Praveen Kumar")
 
     override fun onCreate(savedInstanceState: Bundle?) {
